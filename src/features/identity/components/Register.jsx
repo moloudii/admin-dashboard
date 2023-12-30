@@ -1,6 +1,7 @@
 import logo from "@assets/images/logo.svg";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useSubmit } from "react-router-dom";
+import { httpService } from "../../../core/http-service";
 function Register() {
   const {
     register,
@@ -8,8 +9,11 @@ function Register() {
     handleSubmit,
     watch,
   } = useForm();
+  const submitForm = useSubmit();
+
   const onSubmit = (data) => {
-    console.log(data);
+    const { confirmPassword, ...userData } = data;
+    submitForm(userData, { method: "POST" });
   };
   return (
     <>
@@ -115,3 +119,10 @@ function Register() {
   );
 }
 export default Register;
+
+export async function registerAction({ request }) {
+  const formData = await request.formData();
+  const data = Object.fromEntries(formData);
+  const response = await httpService.post("/Users", data);
+  return response.status === 200;
+}
