@@ -5,9 +5,11 @@ import {
   useActionData,
   useNavigate,
   useNavigation,
+  useRouteError,
   useSubmit,
 } from "react-router-dom";
 import { httpService } from "../../../core/http-service";
+import { useEffect } from "react";
 function Register() {
   const {
     register,
@@ -25,6 +27,17 @@ function Register() {
   const isSubmitting = navigation.state !== "idle";
 
   const isSuccessOperation = useActionData();
+
+  const navigate = useNavigate();
+
+  const routeErrors = useRouteError();
+  useEffect(() => {
+    if (isSuccessOperation) {
+      setTimeout(() => {
+        navigate("/login");
+      }, 2000);
+    }
+  }, [isSuccessOperation]);
   return (
     <>
       <div className="text-center mt-4">
@@ -128,6 +141,13 @@ function Register() {
               {isSuccessOperation && (
                 <div className="alert alert-success text-success p-2 mt-2">
                   عملیات با موپفقیت انجام شد به صفحه ورود منتقل می‌شوید.
+                </div>
+              )}
+              {routeErrors && (
+                <div className="alert alert-danger text-danger p-2 mt-3">
+                  {routeErrors.response?.data.map((error) => (
+                    <p className="mb-0">{error.description}</p>
+                  ))}
                 </div>
               )}
             </form>
