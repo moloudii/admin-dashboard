@@ -1,6 +1,12 @@
 import logo from "@assets/images/logo.svg";
 import { useForm } from "react-hook-form";
-import { Link, useNavigation, useSubmit } from "react-router-dom";
+import {
+  Link,
+  useActionData,
+  useNavigate,
+  useNavigation,
+  useSubmit,
+} from "react-router-dom";
 import { httpService } from "../../../core/http-service";
 function Register() {
   const {
@@ -17,6 +23,8 @@ function Register() {
   };
   const navigation = useNavigation();
   const isSubmitting = navigation.state !== "idle";
+
+  const isSuccessOperation = useActionData();
   return (
     <>
       <div className="text-center mt-4">
@@ -117,6 +125,11 @@ function Register() {
                   {isSubmitting ? "در حال انجام عملیات" : "ثبت نام کنید"}
                 </button>
               </div>
+              {isSuccessOperation && (
+                <div className="alert alert-success text-success p-2 mt-2">
+                  عملیات با موپفقیت انجام شد به صفحه ورود منتقل می‌شوید.
+                </div>
+              )}
             </form>
           </div>
         </div>
