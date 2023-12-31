@@ -4,8 +4,20 @@ import Register, {
   registerAction,
 } from "./features/identity/components/Register";
 import IdentityLayout from "./layouts/identity-layout";
+import MainLayout from "./layouts/main-layout";
+import Courses from "./pages/courses";
 
 const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <MainLayout />,
+    children: [
+      {
+        element: <Courses />,
+        index: true,
+      },
+    ],
+  },
   {
     element: <IdentityLayout />,
     children: [
