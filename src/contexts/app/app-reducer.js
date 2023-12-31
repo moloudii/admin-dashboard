@@ -6,6 +6,9 @@ const appReducer = (state, action) => {
     case "CHANGE_THEME": {
       return { ...state, theme: action.payload };
     }
+    case "TOGGLE_SIDEBAR": {
+      return { ...state, showSidebar: !state.showSidebar };
+    }
   }
 };
 export default appReducer;

@@ -1,4 +1,5 @@
 {
+  "classbon": "classbon",
   "register": {
     "title": "Online Education Platform",
     "introMessage": "Register to use the features of Classbon online education platform",
@@ -33,6 +34,21 @@
       "mobileRequired": "Mobile is required",
       "passwordRequired": "Password is required",
       "IncorrectUserNameOrPassword": "The username or password is incorrect"
+    }
+  },
+  "mainLayout": {
+    "sidebar": {
+      "subtitle": "Online Education Platform",
+      "courseManagement": "Course Management",
+      "allCourses": "All Courses",
+      "coursesCategory": "Courses Category",
+      "courseDiscount": "Course Discount",
+      "userManagement": "User Management",
+      "teacherManagement": "Teacher Management",
+      "studentManagement": "Student Management",
+      "blogManagement": "BlogManagement",
+      "tagManagement": "TagManagement",
+      "postManagement": "PostManagement"
     }
   }
 }

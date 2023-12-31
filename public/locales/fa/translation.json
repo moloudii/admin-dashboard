@@ -1,4 +1,5 @@
 {
+  "classbon": "کلاسبن",
   "register": {
     "title": "پلتفرم آموزش آنلاین",
     "introMessage": "جهت استفاده از ویژگی های پلتفرم آموزش آنلاین کلاسبن ثبت نام کنید",
@@ -33,6 +34,21 @@
       "mobileRequired": "موبایل الزامی است",
       "passwordRequired": "رمز عبور الزامی است",
       "IncorrectUserNameOrPassword": "موبایل یا رمز عبور صحیح نمی باشد"
+    }
+  },
+  "mainLayout": {
+    "sidebar": {
+      "subtitle": "پلتفرم آموزش آنلاین",
+      "courseManagement": "مدیریت دوره ها",
+      "allCourses": "همه دوره ها",
+      "coursesCategory": "دسته بندی دوره ها",
+      "courseDiscount": "تخفیف دوره ها",
+      "userManagement": "مدیریت کاربرها",
+      "teacherManagement": "مدیریت مدرس ها",
+      "studentManagement": "مدیریت دانشجوها",
+      "blogManagement": "مدیریت بلاگ",
+      "tagManagement": "مدیریت تگ ها",
+      "postManagement": "مدیریت پست ها"
     }
   }
 }
