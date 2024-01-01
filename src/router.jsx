@@ -5,7 +5,7 @@ import Register, {
 } from "./features/identity/components/Register";
 import IdentityLayout from "./layouts/identity-layout";
 import MainLayout from "./layouts/mainLayout/main-layout";
-import Courses from "./pages/courses";
+import Courses, { coursesLoader } from "./pages/courses";
 
 const router = createBrowserRouter([
   {
@@ -15,6 +15,7 @@ const router = createBrowserRouter([
       {
         element: <Courses />,
         index: true,
+        loader: coursesLoader,
       },
     ],
   },
