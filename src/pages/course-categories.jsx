@@ -5,7 +5,6 @@ import CategoryList from "../features/categories/components/category-list";
 
 const CourseCategories = () => {
   const data = useLoaderData();
-
   return (
     <div className="row">
       <div className="col-12">

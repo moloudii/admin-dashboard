@@ -1,4 +1,6 @@
-function CategoryList({ categories: { data, totlaRecords } }) {
+import Pagination from "../../../components/pagination";
+
+function CategoryList({ categories: { data, totalRecords } }) {
   return (
     <>
       <div className="row">
@@ -50,6 +52,9 @@ function CategoryList({ categories: { data, totlaRecords } }) {
                 ))}
               </tbody>
             </table>
+            <div className="card-footer">
+              <Pagination totalRecords={totalRecords} />
+            </div>
           </div>
         </div>
       </div>
