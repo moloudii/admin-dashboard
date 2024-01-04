@@ -1,6 +1,9 @@
 import _ from "lodash";
 import { useSearchParams } from "react-router-dom";
-function Pagination({ totalRecords, pageSize = 2 }) {
+function Pagination({
+  totalRecords,
+  pageSize = import.meta.env.VITE_PAGE_SIZE,
+}) {
   const pages = Math.ceil(totalRecords / pageSize);
   const [searchParams, setSearchParams] = useSearchParams();
   const currentPage = +searchParams.get("page") || 1;
