@@ -1,4 +1,8 @@
 import { useForm } from "react-hook-form";
+import { httpInterceptedService } from "@core/http-service";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 const AddUpdateCategory = ({ setShowAddCategory }) => {
   const {
@@ -6,10 +10,42 @@ const AddUpdateCategory = ({ setShowAddCategory }) => {
     handleSubmit,
     formState: { errors },
   } = useForm();
+  const navigate = useNavigate();
+  const { t } = useTranslation();
+
+  const onSubmit = (data) => {
+    setShowAddCategory(false);
+    const response = httpInterceptedService.post(`/CourseCategory/`, data);
+    toast.promise(
+      response,
+      {
+        pending: "در حال ذخیره اطلاعات ...",
+        success: {
+          render() {
+            const url = new URL(window.location.href);
+            navigate(url.pathname + url.search);
+            return "عملیات با موفقیت انجام شد.";
+          },
+        },
+        error: {
+          render({ data }) {
+            if (data.response.status === 400) {
+              return t("categoryList." + data.response.data.code);
+            } else {
+              return "خطا در اجرای عملیات";
+            }
+          },
+        },
+      },
+      {
+        position: toast.POSITION.BOTTOM_LEFT,
+      }
+    );
+  };
   return (
     <div className="card">
       <div className="card-body">
-        <form className="mb-4">
+        <form className="mb-4" onSubmit={handleSubmit(onSubmit)}>
           <div>
             <label className="form-label">نام</label>
             <input
