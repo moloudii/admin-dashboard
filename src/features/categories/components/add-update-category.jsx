@@ -3,15 +3,31 @@ import { httpInterceptedService } from "@core/http-service";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { useCategoryContext } from "../category-context";
+import { useEffect } from "react";
 
 const AddUpdateCategory = ({ setShowAddCategory }) => {
   const {
     register,
     handleSubmit,
+    setValue,
     formState: { errors },
   } = useForm();
+  const { category, setCategory } = useCategoryContext();
   const navigate = useNavigate();
   const { t } = useTranslation();
+
+  useEffect(() => {
+    if (category) {
+      setValue("name", category.name);
+      setValue("id", category.id);
+    }
+  }, [category]);
+
+  const onClose = () => {
+    setShowAddCategory(false);
+    setCategory(null);
+  };
 
   const onSubmit = (data) => {
     setShowAddCategory(false);
@@ -24,6 +40,9 @@ const AddUpdateCategory = ({ setShowAddCategory }) => {
           render() {
             const url = new URL(window.location.href);
             navigate(url.pathname + url.search);
+            if (category) {
+              setCategory(null);
+            }
             return "عملیات با موفقیت انجام شد.";
           },
         },
@@ -62,7 +81,7 @@ const AddUpdateCategory = ({ setShowAddCategory }) => {
             <button
               type="button"
               className="btn btn-lg btn-secondary ms-2"
-              onClick={() => setShowAddCategory(false)}
+              onClick={onClose}
             >
               بستن
             </button>

@@ -10,6 +10,7 @@ import CourseCategories, { categoriesLoader } from "./pages/course-categories";
 import CourseDetails, {
   courseDetailsLoader,
 } from "./features/courses/components/course-details";
+import { CategoryProvider } from "./features/categories/category-context";
 
 const router = createBrowserRouter([
   {
@@ -23,7 +24,11 @@ const router = createBrowserRouter([
       },
       {
         path: "course-categories",
-        element: <CourseCategories />,
+        element: (
+          <CategoryProvider>
+            <CourseCategories />
+          </CategoryProvider>
+        ),
         loader: categoriesLoader,
       },
       {

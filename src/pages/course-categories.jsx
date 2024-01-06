@@ -7,11 +7,13 @@ import { toast } from "react-toastify";
 import { render } from "react-dom";
 import { useTranslation } from "react-i18next";
 import AddUpdateCategory from "../features/categories/components/add-update-category";
+import { useCategoryContext } from "../features/categories/category-context";
 
 const CourseCategories = () => {
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState();
   const [showAddCategory, setShowAddCategory] = useState(false);
+  const { category } = useCategoryContext();
   const navigate = useNavigate();
   const { t } = useTranslation();
   const data = useLoaderData();
@@ -60,7 +62,7 @@ const CourseCategories = () => {
               افزودن دسته جدید
             </a>
           </div>
-          {showAddCategory && (
+          {(showAddCategory || category) && (
             <AddUpdateCategory setShowAddCategory={setShowAddCategory} />
           )}
           <Suspense
